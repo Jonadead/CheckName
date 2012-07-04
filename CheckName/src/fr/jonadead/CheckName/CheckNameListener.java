@@ -1,5 +1,7 @@
 package fr.jonadead.CheckName;
 
+import java.util.List;
+
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.EventHandler;
@@ -20,20 +22,23 @@ public class CheckNameListener implements Listener{
 		
 		FileConfiguration config = plugin.getConfig();
 		
-		String[] Names = config.getString("Names").split(", ");
-		String[] Replaces = config.getString("Replaced by").split(", ");
-		String[] RepColor = config.getString("Colors").split(", ");
+		List<String> players = config.getStringList("players");
 
-		for(int i = 0;i<Names.length;i++){
-			String name = Names[i];
+		for(int i = 0 ; i < players.size() ; i++){
 			
+			String[] checked_player = players.get(i).split(", ");
 			String origine = event.getMessage().toLowerCase();
-			if(origine.contains(name.toLowerCase())){
-				String replace = Replaces[i];
-				ChatColor color = getColor(RepColor[i]);
+			String[] org_split = origine.split(" ");
+			
+			for(int j = 0 ; i < org_split.length ; j++){
 				
-				String newmessage = origine.replace(name, color + replace + ChatColor.RESET);
-				event.setMessage(newmessage);
+				if(org_split[j].equals(checked_player[0].toLowerCase())){
+					
+					ChatColor color = getColor(checked_player[2]);
+					String newmessage = origine.replace(checked_player[0], color + checked_player[1] + ChatColor.RESET);
+					event.setMessage(newmessage);
+				}
+			
 			}
 		}   
 	}

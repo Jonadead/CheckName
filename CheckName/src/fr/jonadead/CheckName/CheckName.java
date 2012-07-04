@@ -1,5 +1,7 @@
 package fr.jonadead.CheckName;
 
+
+import java.util.Arrays;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -22,16 +24,10 @@ public class CheckName extends JavaPlugin{
 		pm.registerEvents(listener, this);
 		
 		FileConfiguration config = this.getConfig();
-		if(!config.contains("Names")){
-			config.set("Names", "Player");
+		if(!config.contains("players")){
+			String[] list = {"player1, replacement, color", "player2, replacement, color"};
+		    config.set("players", Arrays.asList(list));
 		}
-		if(!config.contains("Replaced by")){
-			config.set("Replaced by", "@Player");
-		}
-		if(!config.contains("Colors")){
-			config.set("Colors", "AQUA");
-		}
-		config.set("Names", config.getString("Names").toLowerCase());
 		
 		if(config.options().header() != "CheckName v1.0") {
 			config.options().header("CheckName v1.0");

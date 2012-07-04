@@ -25,11 +25,11 @@ public class CheckName extends JavaPlugin{
 		if(!config.contains("Names")){
 			config.set("Names", "Player");
 		}
-		if(!config.contains("Replace by")){
-			config.set("Replace by", "@Player");
+		if(!config.contains("Replaced by")){
+			config.set("Replaced by", "@Player");
 		}
-		if(!config.contains("Color")){
-			config.set("Color", "AQUA");
+		if(!config.contains("Colors")){
+			config.set("Colors", "AQUA");
 		}
 		config.set("Names", config.getString("Names").toLowerCase());
 		

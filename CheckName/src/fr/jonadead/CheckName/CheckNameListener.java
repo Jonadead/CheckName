@@ -21,8 +21,8 @@ public class CheckNameListener implements Listener{
 		FileConfiguration config = plugin.getConfig();
 		
 		String[] Names = config.getString("Names").split(", ");
-		String[] Replaces = config.getString("Replace by").split(", ");
-		String[] RepColor = config.getString("Color").split(", ");
+		String[] Replaces = config.getString("Replaced by").split(", ");
+		String[] RepColor = config.getString("Colors").split(", ");
 
 		for(int i = 0;i<Names.length;i++){
 			String name = Names[i];

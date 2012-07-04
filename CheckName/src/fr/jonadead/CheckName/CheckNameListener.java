@@ -27,18 +27,30 @@ public class CheckNameListener implements Listener{
 		for(int i = 0 ; i < players.size() ; i++){
 			
 			String[] checked_player = players.get(i).split(", ");
+			checked_player[0] = checked_player[0].toLowerCase();
 			String origine = event.getMessage().toLowerCase();
-			String[] org_split = origine.split(" ");
-			
-			for(int j = 0 ; i < org_split.length ; j++){
+			String[] org_split = null;
+			if(origine.contains(" ")){
+				org_split = origine.split(" ");
 				
-				if(org_split[j].equals(checked_player[0].toLowerCase())){
+				for(int j = 0 ; j < org_split.length ; j++){
+				
+					if(org_split[j].equals(checked_player[0].toLowerCase())){
+					
+						ChatColor color = getColor(checked_player[2]);
+						String newmessage = origine.replace(checked_player[0], color + checked_player[1] + ChatColor.RESET);
+						event.setMessage(newmessage);
+					}
+				}	
+			}
+			else{
+				
+				if(origine.equals(checked_player[0].toLowerCase())){
 					
 					ChatColor color = getColor(checked_player[2]);
 					String newmessage = origine.replace(checked_player[0], color + checked_player[1] + ChatColor.RESET);
 					event.setMessage(newmessage);
 				}
-			
 			}
 		}   
 	}

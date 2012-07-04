@@ -1,0 +1,5 @@
+name: CheckName
+author: jonadead
+main: fr.jonadead.CheckName.CheckName
+version: 1.0
+commands:
